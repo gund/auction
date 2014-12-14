@@ -1,0 +1,15 @@
+<core-header-panel>
+    <core-toolbar class="medium-tall">
+        <paper-icon-button icon="menu" role="icon" tabindex="0" aria-label="menu"></paper-icon-button>
+        <div flex="">Auction 1.0</div>
+        <div class="bottom fit" horizontal layout>
+            <paper-tabs id="notLoggedInMenu" horizontal="" center="" layout=""
+                        data-bind="foreach: router.navigationModel, attr: {selected: router.selectedTab}">
+                <paper-tab><a data-bind="attr: { href: hash }"><span data-bind="text: title"></span></a></paper-tab>
+            </paper-tabs>
+        </div>
+    </core-toolbar>
+    <div data-bind="router: {}">
+
+    </div>
+</core-header-panel>

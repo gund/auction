@@ -1,45 +1,24 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Durandal</title>
-
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="apple-touch-startup-image" href="lib/durandal/img/ios-startup-image-landscape.png" media="(orientation:landscape)" />
-    <link rel="apple-touch-startup-image" href="lib/durandal/img/ios-startup-image-portrait.png" media="(orientation:portrait)" />
-    <link rel="apple-touch-icon" href="lib/durandal/img/icon.png" />
-
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/ie10mobile.css" />
-    <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
-    <link rel="stylesheet" href="css/starterkit.css" />
-
-    <script type="text/javascript">
-        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-            var msViewportStyle = document.createElement("style");
-            var mq = "@@-ms-viewport{width:auto!important}";
-            msViewportStyle.appendChild(document.createTextNode(mq));
-            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
-        }
-    </script>
-
-    <script src="//www.parsecdn.com/js/parse-1.3.2.min.js"></script>
-    <script>
-        Parse.initialize("XrRQeum17tU7ogr7AJS1pt171EjiyuujXZyNlhZs", "krmDUM8GyG0qwj7i0U5lVSWGF3NncI7WWGeWAHNZ");
-    </script>
+    <!-- Polymer imports-->
+    <script src="bower_components/webcomponentsjs/webcomponents.js"> </script>
+    <!--<link rel="import" href="bower_components/font-roboto/roboto.html">-->
+    <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import"  href="bower_components/paper-tabs/paper-tabs.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-input/paper-input-decorator.html">
+    <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/core-field/core-field.html">
+    <!-- Polymer imports ends-->
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css"/>
 </head>
-<body>
-    <div id="applicationHost">
-        <div class="splash">
-            <i class="fa fa-spinner fa-spin"></i>
-        </div>
-    </div>
+<body fullbleed vertical layout unresolved id="applicationHost">
+
 
     <script src="lib/require/require.js" data-main="app/main"></script>
 </body>

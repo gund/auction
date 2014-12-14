@@ -1,0 +1,95 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'RobotoDraft', sans-serif;
+    color: #12202b;
+}
+
+core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+core-toolbar {
+    background: #03a9f4;
+    color: white;
+}
+
+#notLoggedInMenu {
+    width: 100%;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-transform: uppercase;
+}
+
+#notLoggedInMenu a {
+    text-decoration: none;
+    color: white;
+}
+
+#notLoggedInMenu a span {
+    text-align: center;
+    display: block;
+    position: relative;
+    top: 40%;
+}
+
+hr {
+    border-top: 1px solid #12202b;
+}
+
+/*Bage A 1.0*/
+.head {
+    margin: 0px auto 30px;
+    text-align: center;
+}
+
+.lead {
+    width: 50%;
+}
+
+.bage {
+    font-size: 58px;
+    width: 144px;
+    height: 144px;
+    line-height: 140px;
+    display: block;
+    font-weight: 500;
+    color: inherit;
+    cursor: default;
+    border-radius: 15%;
+    border: 2px solid #12202b;
+    background-color: transparent;
+    margin-top: 50px;
+}
+
+#joinUs-a {
+    color: inherit
+}
+
+.accept-pol::shadow #ripple {
+    color: #03a9f4
+}
+
+paper-input, paper-input-decorator {
+    width: 100%;
+}
+
+form[name='login'], form[name='registration'] {
+    width: 50%;
+    position: relative;
+    top: 20px;
+}
+
+.login-register-pol {
+    margin: 20px 0px
+}
+
+.fullWidth {
+    width: 100%
+}

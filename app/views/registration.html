@@ -1,0 +1,22 @@
+<div class="container">
+    <form name="registration" class="head" data-bind="submit: submit">
+        <core-field>
+            <paper-input floatinglabel label="Email" type="text" error="input is required!"
+                         data-bind="value: email"></paper-input>
+        </core-field>
+        <core-field>
+            <paper-input floatinglabel label="Login" type="text" error="input is required!"
+                         data-bind="value: login"></paper-input>
+        </core-field>
+        <core-field>
+            <paper-input-decorator floatinglabel label="Password" name="password">
+                <input type="password" data-bind="value: password"/>
+            </paper-input-decorator>
+        </core-field>
+        <paper-button raised class="accept-pol fullWidth login-register-pol" type="submit">Create account</paper-button>
+        <div>
+            <a href="#login">Have an account?</a>
+        </div>
+
+    </form>
+</div>
