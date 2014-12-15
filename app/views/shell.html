@@ -7,7 +7,11 @@
                         data-bind="foreach: router.navigationModel, attr: {selected: router.selectedTab}">
                 <paper-tab><a data-bind="attr: { href: hash }"><span data-bind="text: title"></span></a></paper-tab>
             </paper-tabs>
+            <!-- ko if: router.showFullMenu -->
+            <span data-bind="text:router.showFullMenu"></span>
+            <!-- /ko -->
         </div>
+
     </core-toolbar>
     <div data-bind="router: {}">
 

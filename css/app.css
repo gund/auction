@@ -93,3 +93,10 @@ form[name='login'], form[name='registration'] {
 .fullWidth {
     width: 100%
 }
+
+.errorMessage {
+    margin: -1% 0 0 0;
+    text-align: left;
+    color: #d34336;
+    font-size: 0.85em;
+}

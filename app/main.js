@@ -8,11 +8,15 @@ requirejs.config({
         'jquery': '../lib/jquery/jquery-1.9.1',
         'Q': '../lib/q/q',
 
-        'userContext': 'userContext'
+        'userContext': 'userContext',
+        'knockout.validation':'../lib/knockout-validation/knockout.validation'
+    },
+    shim: {
+        "knockout.validation": ["knockout"]
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function (system, app, viewLocator) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', "userContext"], function (system, app, viewLocator) {
     app.title = 'Auction 2.0';
 
     app.configurePlugins({

@@ -1,33 +1,60 @@
-define(['knockout', 'userContext', 'plugins/router'], function (ko, userContext, router) {
+define(['knockout', 'userContext', 'plugins/router', 'knockout.validation', 'jquery'], function (ko, userContext, router, validation, $) {
+
+    ko.validation.configure({
+        registerExtenders: false,
+        messagesOnModified: true,
+        insertMessages: false,
+        parseInputAttributes: false,
+        messageTemplate: null
+    });
 
     var viewModel = {
-
-        email: ko.observable(),
-        login: ko.observable(),
-        password: ko.observable(),
+        email: ko.observable().extend({
+            required: {
+                params: true,
+                message: "Email is required"
+            },
+            email: true
+        }),
+        login: ko.observable().extend({
+            required: {
+                params: true,
+                message: "Login is required"
+            },
+            minLength: 3
+        }),
+        password: ko.observable().extend({
+            required: {
+                params: true,
+                message: "Password is required"
+            },
+            minLength: 6
+        }),
 
         submit: submit
-        //canActivate: canActivate
     };
 
-    return viewModel;
-
-    //function canActivate() {
-    //    if (userContext.session) {
-    //        return { redirect: '' };
-    //    }
-    //
-    //    return true;
-    //}
+    viewModel.errors = ko.validation.group(viewModel);
 
     function submit() {
-        userContext.signup(viewModel.login(), viewModel.email(), viewModel.password())
-            .then(function () {
-                router.navigate('home');
-            })
-            .catch(function () {
-                // handle error
-            })
+        if (viewModel.errors().length == 0) {
+            userContext.signup(viewModel.login(), viewModel.email(), viewModel.password())
+                .then(function () {
+                    if (userContext.isLoggedIn()) {
+                        router.navigate('');
+                        location.reload();
+                    }
+                })
+                .catch(function (e) {
+                    var serverErrorCode = JSON.parse(e.responseText).code;
+                    if (serverErrorCode == 202) {
+                        alert('user is already exist');
+                    }
+                });
+        } else {
+            viewModel.errors.showAllMessages();
+        }
     }
 
-})
+    return viewModel;
+});

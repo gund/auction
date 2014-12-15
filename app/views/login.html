@@ -1,11 +1,13 @@
 <div class="container">
     <form name="login" class="head">
         <core-field>
-            <paper-input floatinglabel label="Login" type="text" error="input is required!"></paper-input>
+            <paper-input-decorator floatinglabel label="Login">
+                <input type="text" name="login" data-bind="value: login"/>
+            </paper-input-decorator>
         </core-field>
         <core-field>
-            <paper-input-decorator floatinglabel label="Password" name="password">
-                <input type="password"/>
+            <paper-input-decorator floatinglabel label="Password">
+                <input type="password"  name="password" data-bind="value: password"/>
             </paper-input-decorator>
         </core-field>
         <paper-button raised class="accept-pol fullWidth login-register-pol">Log In</paper-button>
