@@ -1,4 +1,4 @@
-define(['knockout', 'userContext', 'plugins/router', 'knockout.validation', 'jquery'], function (ko, userContext, router, validation, $) {
+define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], function (ko, userContext, router, validation) {
 
     ko.validation.configure({
         registerExtenders: false,
@@ -12,21 +12,21 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation', 'jqu
         email: ko.observable().extend({
             required: {
                 params: true,
-                message: "Email is required"
+                message: "Email is required."
             },
             email: true
         }),
         login: ko.observable().extend({
             required: {
                 params: true,
-                message: "Login is required"
+                message: "Login is required."
             },
             minLength: 3
         }),
         password: ko.observable().extend({
             required: {
                 params: true,
-                message: "Password is required"
+                message: "Password is required."
             },
             minLength: 6
         }),

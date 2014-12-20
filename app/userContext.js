@@ -54,7 +54,7 @@ define(['Q', 'plugins/http'], function (Q, http) {
         var headers = {
             "X-Parse-Application-Id": "5aANDFPFiBGti8xHjR52GsO6DP6GpT6LzIr7q9X6",
             "X-Parse-REST-API-Key": "RclC9e0afgL4oQhfauYPQZhU5NOJUVQHyr66JK6v"
-        }
+        };
 
         var user = {
             username: login,

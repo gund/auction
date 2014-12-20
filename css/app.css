@@ -17,6 +17,10 @@ core-toolbar {
     color: white;
 }
 
+.caps {
+    text-transform: uppercase;
+}
+
 #notLoggedInMenu {
     width: 100%;
     margin: 0;
@@ -45,9 +49,16 @@ hr {
 
 /*Bage A 1.0*/
 .head {
-    margin: 0px auto 30px;
+    margin: 0 auto 30px;
     text-align: center;
 }
+.center {
+    margin: 0 auto 30px;
+}
+
+.text-center {
+    text-align: center;
+} 
 
 .lead {
     width: 50%;
@@ -94,9 +105,27 @@ form[name='login'], form[name='registration'] {
     width: 100%
 }
 
+.Width40 {
+    width: 40%;
+}
+
 .errorMessage {
     margin: -1% 0 0 0;
     text-align: left;
     color: #d34336;
     font-size: 0.85em;
+    overflow: hidden;
+}
+.errorMessage span {
+    float: left;
+    position: relative;
+    top: 2px;
+}
+.errorMessage svg {
+    pointer-events: none;
+    display: inline-block;
+    float: right;
+    height:20px;
+    width:20px;
+    fill: #d34336;
 }
