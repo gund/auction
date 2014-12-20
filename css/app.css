@@ -155,3 +155,11 @@ form[name='login'], form[name='registration'] {
     width: 20px;
     fill: #d34336;
 }
+
+/*media queries */
+
+@media screen and (max-width: 1000px) {
+    form[name='login'], form[name='registration'], .lead {
+        width: 90%;
+    }
+}
