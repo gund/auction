@@ -1,21 +1,24 @@
-<core-header-panel>
-    <core-toolbar class="medium-tall">
+<core-scaffold>
+    <core-header-panel navigation flex>
+        <core-toolbar>
+            <span>Menu</span>
+        </core-toolbar>
+        <core-menu data-bind="foreach: router.navigationModel, attr: {selected: router.selectedTab}">
+            <core-item data-bind="attr: { label: title, icon:icon}">
+                <a data-bind="attr: { href: hash }"></a>
+            </core-item>
+        </core-menu>
+    </core-header-panel>
+    <div tool class="fullWidth">
+        <div class="caps title">Auction 1.0</div>
         <!-- ko if: router.showFullMenu -->
-        <paper-icon-button icon="menu" role="icon" tabindex="0" aria-label="menu"></paper-icon-button>
-        <!-- /ko -->
-        <div flex="" class="caps">Auction 1.0</div>
-        <!-- ko if: router.showFullMenu -->
-        <paper-icon-button icon="search" role="button" tabindex="0" aria-label="search"></paper-icon-button>
-        <paper-icon-button icon="more-vert" role="button" tabindex="0" aria-label="more-vert"></paper-icon-button>
-        <!-- /ko -->
-        <div class="bottom fit" horizontal layout>
-            <paper-tabs id="notLoggedInMenu" horizontal="" center="" layout=""
-                        data-bind="foreach: router.navigationModel, attr: {selected: router.selectedTab}">
-                <paper-tab><a data-bind="attr: { href: hash }"><span data-bind="text: title"></span></a></paper-tab>
-            </paper-tabs>
+        <div id="search" >
+            <paper-icon-button icon="search" data-bind=""></paper-icon-button>
+            <input type="search" autocomplete="off" style="display: none">
         </div>
-    </core-toolbar>
-    <div data-bind="router: {}">
+        <!-- /ko -->
+    </div>
+    <div fit data-bind="router:{}">
 
     </div>
-</core-header-panel>
+</core-scaffold>

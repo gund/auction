@@ -1,6 +1,7 @@
 define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (router, app, userContext, ko) {
 
     var routes = {
+        title: 'asd',
         router: router,
         search: function () {
             app.showMessage('Search not yet implemented...');
@@ -8,44 +9,38 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         navigate: function () {
 
         },
-        activate: function (menu) {
+        activate: function () {
 
             var menu = [];
             if (userContext.isLoggedIn()) {
                 menu.push(
-                    {route: '', title: 'All auctions', moduleId: 'viewmodels/content', nav: true},
-                    {route: 'myauctions', title: 'My auctions', moduleId: 'viewmodels/myauctions', nav: true}
+                    {route: '', title: 'All auctions', moduleId: 'viewmodels/content', nav: true, icon: "list"},
+                    {
+                        route: 'myauctions',
+                        title: 'My auctions',
+                        moduleId: 'viewmodels/myauctions',
+                        nav: true,
+                        icon: "grade"
+                    }
                 );
             } else {
                 menu.push(
                     {route: '', moduleId: 'viewmodels/landing', nav: false},
-                    {route: 'home', title: 'Home', moduleId: 'viewmodels/landing', nav: true},
-                    {route: 'login', title: 'Login', moduleId: 'viewmodels/login', nav: true},
-                    {route: 'registration', title: 'Registration', moduleId: 'viewmodels/registration', nav: true}
+                    {route: 'home', title: 'Home', moduleId: 'viewmodels/landing', nav: true, icon: 'home'},
+                    {route: 'login', title: 'Login', moduleId: 'viewmodels/login', nav: true, icon: 'account-circle'},
+                    {
+                        route: 'registration',
+                        title: 'Registration',
+                        moduleId: 'viewmodels/registration',
+                        nav: true,
+                        icon: 'add-circle'
+                    }
                 );
             }
             router.map(menu).buildNavigationModel();
             return router.activate();
         }
     };
-
-    function getShellMenu() {
-        var menu = [];
-        if (userContext.isLoggedIn()) {
-            menu.push(
-                {route: '', title: 'All auctions', moduleId: 'viewmodels/content', nav: true},
-                {route: 'myauctions', title: 'My auctions', moduleId: 'viewmodels/myauctions', nav: true}
-            );
-        } else {
-            menu.push(
-                {route: '', moduleId: 'viewmodels/landing', nav: false},
-                {route: 'home', title: 'Home', moduleId: 'viewmodels/landing', nav: true},
-                {route: 'login', title: 'Login', moduleId: 'viewmodels/login', nav: true},
-                {route: 'registration', title: 'Registration', moduleId: 'viewmodels/registration', nav: true}
-            );
-        }
-        return menu;
-    }
 
     router.selectedTab = ko.observable(0);
     router.showFullMenu = ko.observable(false);

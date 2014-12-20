@@ -1,24 +1,47 @@
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #E5E5E5;
-    font-family: 'RobotoDraft', sans-serif;
-    color: #12202b;
-}
-
-core-header-panel {
-    height: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 core-toolbar {
+    background: #000000;
+    color: #fafafa;
+}
+
+/* content of the left panel */
+core-header-panel {
+    background: #616161;
+    color: #fafafa;
+}
+
+core-scaffold::shadow core-toolbar {
     background: #03a9f4;
     color: white;
 }
 
+/* content of the right panel */
+core-scaffold::shadow core-header-panel {
+    background: #F4F4F4;
+    color: #212121;
+}
+
+/*selected menu item*/
+.core-selected {
+    color: #03a9f4;
+}
+
 .caps {
     text-transform: uppercase;
+}
+
+.title {
+    float: left;
+    height: 100%;
+    vertical-align: text-bottom;
+}
+
+#search {
+    float: right;
 }
 
 #notLoggedInMenu {
@@ -52,13 +75,14 @@ hr {
     margin: 0 auto 30px;
     text-align: center;
 }
+
 .center {
     margin: 0 auto 30px;
 }
 
 .text-center {
     text-align: center;
-} 
+}
 
 .lead {
     width: 50%;
@@ -98,7 +122,7 @@ form[name='login'], form[name='registration'] {
 }
 
 .login-register-pol {
-    margin: 20px 0px
+    margin: 20px 0
 }
 
 .fullWidth {
@@ -116,16 +140,18 @@ form[name='login'], form[name='registration'] {
     font-size: 0.85em;
     overflow: hidden;
 }
+
 .errorMessage span {
     float: left;
     position: relative;
     top: 2px;
 }
+
 .errorMessage svg {
     pointer-events: none;
     display: inline-block;
     float: right;
-    height:20px;
-    width:20px;
+    height: 20px;
+    width: 20px;
     fill: #d34336;
 }

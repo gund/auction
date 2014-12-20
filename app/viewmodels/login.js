@@ -23,7 +23,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
             },
             minLength: 6
         }),
-
+        error: ko.observableArray(),
         submit: submit
     };
 
@@ -39,10 +39,9 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                     }
                 })
                 .catch(function (e) {
-                    var serverErrorCode = JSON.parse(e.responseText).code;
-                    if (serverErrorCode == 202) {
-                        alert('user is already exist');
-                    }
+                    var serverErrorMessage = JSON.parse(e.responseText).error;
+                    viewModel.error([]);
+                    viewModel.error.push({'errorText': serverErrorMessage});
                 });
         } else {
             viewModel.errors.showAllMessages();
