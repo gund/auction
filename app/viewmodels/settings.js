@@ -1,4 +1,4 @@
-define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'durandal/app'], function (ko, userContext, validation, http, app) {
+define(['knockout', 'userContext', 'knockout.validation', 'plugins/router'], function (ko, userContext, validation, router) {
 
     ko.validation.configure({
         registerExtenders: false,
@@ -24,10 +24,10 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
             },
             minLength: 3
         });
-        this.password = ko.observable().extend({
+        this.password = ko.observable('').extend({
             minLength: 6
         });
-        this.newPassword = ko.observable().extend({
+        this.newPassword = ko.observable('').extend({
             minLength: 6,
             equal: {
                 params: this.password,
@@ -36,9 +36,13 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
         });
         this.error = ko.observable();
         this.errors = ko.validation.group(this);
-
-        this.loadUserInfo();
     }
+
+    ViewModel.prototype.activate = function() {
+        this.loadUserInfo();
+        this.password('');
+        this.newPassword('');
+    };
 
     ViewModel.prototype.loadUserInfo = function () {
         var me = this;
@@ -61,11 +65,14 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
         var me = this;
         if (this.errors().length == 0) {
             document.querySelector('#spinner').show();
-            var progress = userContext.saveUserInfo({
-
-            });
-            progress.done(function(data) {
-
+            var user2update = {
+                email: this.email,
+                username: this.login
+            };
+            if (this.password() != "") user2update.password = this.password();
+            var progress = userContext.saveUserInfo(user2update);
+            progress.done(function() {
+                router.navigate('all');
             });
             progress.catch(function (e) {
                 me.error(JSON.parse(e.responseText).error);

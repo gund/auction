@@ -6,6 +6,7 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         signup: signup,
         logout: logout,
         getUserId: getUserId,
+        getSessionToken: getSessionToken,
         loadUserInfo: loadUserInfo,
         saveUserInfo: saveUserInfo,
         session: null
@@ -59,8 +60,9 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         http.get(url, user, app.parseHeaders)
             .done(function (response) {
                 if (response) {
-                    userContext.session = response;
+                    userContext.session = response.sessionToken;
                     localStorage.setItem('userID', response.objectId);
+                    localStorage.setItem('sessionToken', response.sessionToken);
                     dfd.resolve();
                 } else {
                     dfd.reject(response);
@@ -77,10 +79,16 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
     function logout() {
         if (!userContext.isLoggedIn()) return;
         localStorage.removeItem('userID');
+        localStorage.removeItem('sessionToken');
+        userContext.session = null;
     }
 
     function getUserId() {
         return localStorage.getItem('userID');
+    }
+
+    function getSessionToken() {
+        return localStorage.getItem('sessionToken');
     }
 
     function loadUserInfo() {
@@ -105,6 +113,9 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
     function saveUserInfo(user) {
         var dfd = Q.defer();
         var url = "https://api.parse.com/1/users/" + userContext.getUserId();
+
+        var headers = app.parseHeaders;
+        headers["X-Parse-Session-Token"] = getSessionToken();
 
         http.put(url, user, app.parseHeaders)
             .then(function (data) {
