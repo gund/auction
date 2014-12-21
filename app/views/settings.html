@@ -27,12 +27,25 @@
             </svg>
         </p>
         <core-field>
-            <paper-input-decorator floatinglabel label="Password">
+            <paper-input-decorator floatinglabel label="New Password">
                 <input type="password" name="password" data-bind="value: password"/>
             </paper-input-decorator>
         </core-field>
         <p class="errorMessage" data-bind="if: !password.isValid() && password.isModified()">
             <span data-bind="validationMessage: password"> </span>
+            <svg viewBox="0 0 24 24" height="20px" width="20px">
+                <g>
+                    <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                </g>
+            </svg>
+        </p>
+        <core-field>
+            <paper-input-decorator floatinglabel label="Repeat Password">
+                <input type="password" name="password" data-bind="value: newPassword"/>
+            </paper-input-decorator>
+        </core-field>
+        <p class="errorMessage" data-bind="if: !newPassword.isValid() && newPassword.isModified()">
+            <span data-bind="validationMessage: newPassword"> </span>
             <svg viewBox="0 0 24 24" height="20px" width="20px">
                 <g>
                     <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>

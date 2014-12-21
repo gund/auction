@@ -89,14 +89,13 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         http.get(url, null, app.parseHeaders)
             .done(function (response) {
                 if (response) {
-                    dfd.resolve(JSON.parse(response));
+                    dfd.resolve(response);
                 } else {
-                    dfd.reject(JSON.parse(response));
+                    dfd.reject();
                 }
-
             })
             .fail(function (e) {
-                dfd.reject(JSON.parse(e));
+                dfd.reject(e);
             });
 
         return dfd.promise;

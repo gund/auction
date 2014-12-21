@@ -24,11 +24,14 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
             minLength: 3
         });
         this.password = ko.observable().extend({
-            required: {
-                params: true,
-                message: "Password is required."
-            },
             minLength: 6
+        });
+        this.newPassword = ko.observable().extend({
+            minLength: 6,
+            equal: {
+                params: this.password(),
+                message: "Passwords must be identical"
+            }
         });
         this.error = ko.observable();
         this.errors = ko.validation.group(this);
@@ -37,7 +40,11 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
     }
 
     ViewModel.prototype.loadUserInfo = function() {
-
+        var me = this;
+        userContext.loadUserInfo().done(function(data) {
+            me.email(data.email);
+            me.login(data.username);
+        });
     };
 
     ViewModel.prototype.canActivate = function () {
