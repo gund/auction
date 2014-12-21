@@ -48,6 +48,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
 
     function submit() {
         if (viewModel.errors().length == 0) {
+            document.querySelector('#spinner').show();
             userContext.signup(viewModel.login(), viewModel.email(), viewModel.password())
                 .then(function () {
                     if (userContext.isLoggedIn()) {
@@ -59,6 +60,9 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                     var serverErrorMessage = JSON.parse(e.responseText).error;
                     viewModel.error(serverErrorMessage);
                     document.querySelector('#errorToast').show();
+                })
+                .finally(function(){
+                    document.querySelector('#spinner').hide();
                 });
         } else {
             viewModel.errors.showAllMessages();

@@ -169,5 +169,12 @@ paper-toast {
     bottom: 40px;
     right: 30px;
     left: auto;
+}
+
+#errorToast {
     background-color: #d34336;
+}
+
+#spinner {
+    background-color: #323232;
 }

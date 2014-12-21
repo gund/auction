@@ -33,7 +33,10 @@
 
         <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: submit">Create account
         </paper-button>
-        <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000"></paper-toast>
+        <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="5000" responsivewidth="600px"></paper-toast>
+        <paper-toast text="Loading.." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true" responsivewidth="600px">
+            <paper-spinner active ></paper-spinner>
+        </paper-toast>
         <div class="text-center">
             <a href="#login">Have an account?</a>
         </div>

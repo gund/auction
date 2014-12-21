@@ -38,7 +38,9 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
     viewModel.errors = ko.validation.group(viewModel);
 
     function submit() {
+
         if (viewModel.errors().length == 0) {
+            document.querySelector('#spinner').show();
             userContext.signin(viewModel.login(), viewModel.password())
                 .then(function () {
                     if (userContext.isLoggedIn()) {
@@ -50,6 +52,9 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                     var serverErrorMessage = JSON.parse(e.responseText).error;
                     viewModel.error(serverErrorMessage);
                     document.querySelector('#errorToast').show();
+                })
+                .finally(function(){
+                    document.querySelector('#spinner').hide();
                 });
         } else {
             viewModel.errors.showAllMessages();
