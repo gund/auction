@@ -19,6 +19,11 @@ requirejs.config({
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', "userContext"], function (system, app, viewLocator) {
     app.title = 'Auction 1.0';
 
+    app.parseHeaders = {
+        "X-Parse-Application-Id": "5aANDFPFiBGti8xHjR52GsO6DP6GpT6LzIr7q9X6",
+        "X-Parse-REST-API-Key": "RclC9e0afgL4oQhfauYPQZhU5NOJUVQHyr66JK6v"
+    };
+
     app.configurePlugins({
         router: true,
         dialog: true

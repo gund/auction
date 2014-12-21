@@ -30,7 +30,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
             },
             minLength: 6
         }),
-        error: ko.observableArray(),
+        error: ko.observable(),
         submit: submit,
         canActivate: canActivate
     };

@@ -36,7 +36,8 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
                 nav: showUserMenu,
                 icon: "grade"
             },
-            {route: 'logout', title: 'Logout', moduleId: 'viewmodels/logout', nav: showUserMenu, icon: "exit-to-app"}
+            {route: 'logout', title: 'Logout', moduleId: 'viewmodels/logout', nav: showUserMenu, icon: "exit-to-app"},
+            {route: 'settings', title: 'Settings', moduleId: 'viewmodels/settings', nav: false, icon: "settings"}
         ];
         router.reset();
         router.map(menu).buildNavigationModel();
@@ -50,9 +51,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
     router.showFullMenu = ko.observable(false);
     router.guardRoute = function (routeInfo, params) {
         routes.title(params.config.title);
-        if (userContext.isLoggedIn()) {
-            router.showFullMenu(true);
-        }
+        router.showFullMenu(userContext.isLoggedIn());
         var routeMaps = router.navigationModel();
         for (var i = 0; i < routeMaps.length; ++i) {
             if (routeMaps[i].route == params.fragment) {

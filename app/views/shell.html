@@ -12,6 +12,8 @@
     <div tool flex>
         <span class="caps title" data-bind="text: title"></span>
         <!-- ko if: router.showFullMenu -->
+        <paper-icon-button style="float: right" icon="settings" data-bind="click: function(){router.navigate('settings')}"
+                           title="Settings"></paper-icon-button>
         <div id="search">
             <paper-icon-button icon="search" data-bind=""></paper-icon-button>
             <input type="search" autocomplete="off" style="display: none">
