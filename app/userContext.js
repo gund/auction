@@ -91,7 +91,7 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
                 if (response) {
                     dfd.resolve(JSON.parse(response));
                 } else {
-                    dfd.reject(JSON.parse(response)));
+                    dfd.reject(JSON.parse(response));
                 }
 
             })
