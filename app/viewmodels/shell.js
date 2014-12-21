@@ -1,7 +1,8 @@
 define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (router, app, userContext, ko) {
 
     var routes = {
-        title: 'asd',
+        title: ko.observable(''),
+        appTitle: app.title,
         router: router,
         search: function () {
             app.showMessage('Search not yet implemented...');
@@ -45,6 +46,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
     router.selectedTab = ko.observable(0);
     router.showFullMenu = ko.observable(false);
     router.guardRoute = function (routeInfo, params) {
+        routes.title(params.config.title);
         if (userContext.isLoggedIn()) {
             router.showFullMenu(true);
         }

@@ -17,7 +17,7 @@ requirejs.config({
 });
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', "userContext"], function (system, app, viewLocator) {
-    app.title = 'Auction 2.0';
+    app.title = 'Auction 1.0';
 
     app.configurePlugins({
         router: true,

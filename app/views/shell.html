@@ -1,7 +1,7 @@
 <core-scaffold>
     <core-header-panel navigation flex>
         <core-toolbar>
-            <span>Menu</span>
+            <span data-bind="text: appTitle"></span>
         </core-toolbar>
         <core-menu data-bind="foreach: router.navigationModel, attr: {selected: router.selectedTab}">
             <core-item data-bind="attr: { label: title, icon:icon}">
@@ -10,7 +10,7 @@
         </core-menu>
     </core-header-panel>
     <div tool class="fullWidth">
-        <div class="caps title">Auction 1.0</div>
+        <div class="caps title" data-bind="text: title"></div>
         <!-- ko if: router.showFullMenu -->
         <div id="search" >
             <paper-icon-button icon="search" data-bind=""></paper-icon-button>
