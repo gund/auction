@@ -41,8 +41,8 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
             userContext.signup(viewModel.login(), viewModel.email(), viewModel.password())
                 .then(function () {
                     if (userContext.isLoggedIn()) {
-                        router.navigate('');
-                        location.reload();
+                        router.navigate('all');
+                        router.updateMenu(userContext.isLoggedIn());
                     }
                 })
                 .catch(function (e) {
