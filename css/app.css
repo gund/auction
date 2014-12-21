@@ -186,3 +186,29 @@ html /deep/ [autofocus] {
 paper-action-dialog {
     width: 50%;
 }
+
+.auction {
+    overflow: hidden;
+}
+
+.auction img {
+    float:left;
+    margin: 1%;
+    height: 80px;
+    width: 80px;
+}
+
+.auctionTitle {
+    float: left;
+    margin-left: 1%;
+    width: 60%;
+}
+
+.auctionData {
+    float: left;
+    margin-top: 1%;
+}
+
+.list-group-item:hover {
+    background-color:#d9edf7 !important;
+}
