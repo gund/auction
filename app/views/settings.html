@@ -57,7 +57,10 @@
                           data-bind="attr: {disabled: formLoading}">
                 Save
             </paper-button>
-            <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000"></paper-toast>
+            <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000" responsivewidth="600px"></paper-toast>
+            <paper-toast text="Saving..." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true" responsivewidth="600px">
+                <paper-spinner active></paper-spinner>
+            </paper-toast>
         </form>
     </fieldset>
 </div>

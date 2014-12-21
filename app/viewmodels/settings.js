@@ -58,8 +58,22 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
     };
 
     ViewModel.prototype.saveSettings = function () {
+        var me = this;
         if (this.errors().length == 0) {
+            document.querySelector('#spinner').show();
+            var progress = userContext.saveUserInfo({
 
+            });
+            progress.done(function(data) {
+
+            });
+            progress.catch(function (e) {
+                me.error(JSON.parse(e.responseText).error);
+                document.querySelector('#errorToast').show();
+            });
+            progress.finally(function () {
+                document.querySelector('#spinner').hide();
+            });
         } else this.errors.showAllMessages();
     };
 

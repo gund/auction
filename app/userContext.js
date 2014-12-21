@@ -7,6 +7,7 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         logout: logout,
         getUserId: getUserId,
         loadUserInfo: loadUserInfo,
+        saveUserInfo: saveUserInfo,
         session: null
     };
 
@@ -95,6 +96,20 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
                 }
             })
             .fail(function (e) {
+                dfd.reject(e);
+            });
+
+        return dfd.promise;
+    }
+
+    function saveUserInfo(user) {
+        var dfd = Q.defer();
+        var url = "https://api.parse.com/1/users/" + userContext.getUserId();
+
+        http.put(url, user, app.parseHeaders)
+            .then(function (data) {
+                dfd.resolve(data);
+            }, function (e) {
                 dfd.reject(e);
             });
 
