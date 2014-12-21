@@ -4,6 +4,7 @@ define(['Q', 'plugins/http'], function (Q, http) {
         isLoggedIn: isLoggedIn,
         signin: signin,
         signup: signup,
+        logout: logout,
         session: null
     };
 
@@ -11,7 +12,6 @@ define(['Q', 'plugins/http'], function (Q, http) {
 
     function isLoggedIn() {
         var userID = localStorage.getItem('userID');
-        // localStorage.removeItem(undefined);
         if (userID) {
             return true;
         } else {
@@ -77,6 +77,11 @@ define(['Q', 'plugins/http'], function (Q, http) {
             });
 
         return dfd.promise;
+    }
+
+    function logout() {
+        if (!userContext.isLoggedIn()) return;
+        localStorage.removeItem('userID');
     }
 
 });

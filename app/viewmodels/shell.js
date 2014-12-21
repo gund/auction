@@ -35,7 +35,8 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
                 moduleId: 'viewmodels/myauctions',
                 nav: showUserMenu,
                 icon: "grade"
-            }
+            },
+            {route: 'logout', title: 'Logout', moduleId: 'viewmodels/logout', nav: showUserMenu, icon: "exit-to-app"}
         ];
         router.reset();
         router.map(menu).buildNavigationModel();
