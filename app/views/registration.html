@@ -33,13 +33,7 @@
 
         <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: submit">Create account
         </paper-button>
-
-        <div class="errorServer" data-bind="foreach: error">
-            <div class="alert alert-danger">
-                <span class="close" data-dismiss="alert" onClick="$(this).parent().hide()">&times;</span>
-                <strong>Error!</strong> <span data-bind="text:errorText" class="errorServerText"></span>
-            </div>
-        </div>
+        <paper-toast data-bind="attr: {text: error}" id="errorToast" ></paper-toast>
         <div class="text-center">
             <a href="#login">Have an account?</a>
         </div>

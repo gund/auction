@@ -163,3 +163,11 @@ form[name='login'], form[name='registration'] {
         width: 90%;
     }
 }
+
+/*paper-toast positioning*/
+paper-toast {
+    bottom: 40px;
+    right: 30px;
+    left: auto;
+    background-color: #d34336;
+}

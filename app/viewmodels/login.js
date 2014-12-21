@@ -23,10 +23,18 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
             },
             minLength: 6
         }),
-        error: ko.observableArray(),
-        submit: submit
+        error: ko.observable(),
+        submit: submit,
+        canActivate: canActivate
     };
 
+    function canActivate() {
+        if (userContext.isLoggedIn()) {
+            return { redirect: 'all' };
+        }
+
+        return true;
+    }
     viewModel.errors = ko.validation.group(viewModel);
 
     function submit() {
@@ -40,8 +48,8 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                 })
                 .catch(function (e) {
                     var serverErrorMessage = JSON.parse(e.responseText).error;
-                    viewModel.error([]);
-                    viewModel.error.push({'errorText': serverErrorMessage});
+                    viewModel.error(serverErrorMessage);
+                    document.querySelector('#errorToast').show();
                 });
         } else {
             viewModel.errors.showAllMessages();
