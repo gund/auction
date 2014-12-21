@@ -9,6 +9,7 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
     });
 
     function ViewModel() {
+        this.formLoading = ko.observable(false);
         this.email = ko.observable().extend({
             required: {
                 params: true,
@@ -29,7 +30,7 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
         this.newPassword = ko.observable().extend({
             minLength: 6,
             equal: {
-                params: this.password(),
+                params: this.password,
                 message: "Passwords must be identical"
             }
         });
@@ -39,11 +40,16 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
         this.loadUserInfo();
     }
 
-    ViewModel.prototype.loadUserInfo = function() {
+    ViewModel.prototype.loadUserInfo = function () {
         var me = this;
-        userContext.loadUserInfo().done(function(data) {
+        this.formLoading(true);
+        var progress = userContext.loadUserInfo();
+        progress.done(function (data) {
             me.email(data.email);
             me.login(data.username);
+        });
+        progress.finally(function () {
+            me.formLoading(false);
         });
     };
 
@@ -51,7 +57,7 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
         return userContext.isLoggedIn() ? true : {redirect: 'login'};
     };
 
-    ViewModel.prototype.saveSettings = function() {
+    ViewModel.prototype.saveSettings = function () {
         if (this.errors().length == 0) {
 
         } else this.errors.showAllMessages();
