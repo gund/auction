@@ -83,7 +83,9 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
     }
 
     function loadUserInfo() {
+        var url = "https://api.parse.com/1/users/" + userContext.getUserId();
 
+        http.get(url, null, app.parseHeaders);
     }
 
 });

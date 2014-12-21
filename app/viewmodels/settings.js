@@ -37,9 +37,7 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/http', 'duran
     }
 
     ViewModel.prototype.loadUserInfo = function() {
-        var url = "https://api.parse.com/1/users/" + userContext.getUserId();
 
-        http.get(url, null, app.parseHeaders);
     };
 
     ViewModel.prototype.canActivate = function () {
