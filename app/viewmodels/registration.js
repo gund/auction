@@ -8,48 +8,56 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
         messageTemplate: null
     });
 
-    var viewModel = {
-        email: ko.observable().extend({
+    function ViewModel() {
+        this.email = ko.observable().extend({
             required: {
                 params: true,
                 message: "Email is required."
             },
             email: true
-        }),
-        login: ko.observable().extend({
+        });
+        this.login = ko.observable().extend({
             required: {
                 params: true,
                 message: "Login is required."
             },
             minLength: 3
-        }),
-        password: ko.observable().extend({
+        });
+        this.password = ko.observable().extend({
             required: {
                 params: true,
                 message: "Password is required."
             },
             minLength: 6
-        }),
-        error: ko.observable(),
-        submit: submit,
-        canActivate: canActivate
-    };
+        });
+        this.newPassword = ko.observable().extend({
+            minLength: 6,
+            required: {
+                params: true,
+                message: "Repeat password is required."
+            },
+            equal: {
+                params: this.password,
+                message: "Passwords must be identical"
+            }
+        });
+        this.error = ko.observable();
+        this.errors = ko.validation.group(this);
 
-    function canActivate() {
-        if (userContext.isLoggedIn()) {
-            return { redirect: 'all' };
-        }
-
-        return true;
     }
 
+    ViewModel.prototype.canActivate = function () {
+        if (userContext.isLoggedIn()) {
+            return {redirect: 'all'};
+        }
+        return true;
+    };
 
-    viewModel.errors = ko.validation.group(viewModel);
-
-    function submit() {
-        if (viewModel.errors().length == 0) {
+    ViewModel.prototype.submit = function () {
+        var me = this;
+        if (this.errors().length == 0) {
             document.querySelector('#spinner').show();
-            userContext.signup(viewModel.login(), viewModel.email(), viewModel.password())
+            userContext.signup(this.login(), this.email(), this.password())
                 .then(function () {
                     if (userContext.isLoggedIn()) {
                         router.navigate('all');
@@ -58,16 +66,16 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                 })
                 .catch(function (e) {
                     var serverErrorMessage = JSON.parse(e.responseText).error;
-                    viewModel.error(serverErrorMessage);
+                    me.error(serverErrorMessage);
                     document.querySelector('#errorToast').show();
                 })
-                .finally(function(){
+                .finally(function () {
                     document.querySelector('#spinner').hide();
                 });
         } else {
-            viewModel.errors.showAllMessages();
+            this.errors.showAllMessages();
         }
-    }
+    };
 
-    return viewModel;
+    return new ViewModel();
 });
