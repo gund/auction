@@ -4,6 +4,14 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         title: ko.observable(''),
         appTitle: app.title,
         router: router,
+        logout: function () {
+            userContext.logout();
+            router.updateMenu(userContext.isLoggedIn());
+            router.navigate('login');
+        },
+        cancel: function () {
+            router.navigateBack();
+        },
         search: function () {
             app.showMessage('Search not yet implemented...');
         },

@@ -178,3 +178,11 @@ paper-toast {
 #spinner {
     background-color: #323232;
 }
+
+html /deep/ [autofocus] {
+    color: #03a9f4;
+}
+
+paper-action-dialog {
+    width: 50%;
+}
