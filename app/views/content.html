@@ -1,7 +1,7 @@
 <div class="list-group auctionAll" data-bind="foreach: auctions">
-    <a data-bind="click: function(){$parent.toRoom(objectId)}" class="list-group-item">
+    <a data-bind="attr: {href: '#room/' + objectId}" class="list-group-item">
         <div class="auction">
-            <img data-bind="attr: {src: imageSrc}" />
+            <img data-bind="attr: {src: imageSrc}"/>
             <div class="auctionTitle">
                 <h3 data-bind="text: title"></h3>
                 <p data-bind="text: description"></p>
@@ -13,6 +13,10 @@
             </div>
         </div>
     </a>
+</div>
+<div style="text-align: center" data-bind="if: loading">
+    <paper-spinner active></paper-spinner>
+    <br><br>
 </div>
 <div class="container-fluid" data-bind="if: auctions().length == 0">
     <div class="page-header">

@@ -7,7 +7,6 @@ requirejs.config({
         'knockout': '../lib/knockout/knockout-3.1.0',
         'jquery': '../lib/jquery/jquery-1.9.1',
         'Q': '../lib/q/q',
-
         'userContext': 'userContext',
         'auctionContext': 'auctionContext',
         'knockout.validation':'../lib/knockout-validation/knockout.validation'

@@ -1,4 +1,4 @@
-<core-scaffold>
+<core-scaffold mode="waterfall">
     <core-header-panel navigation flex>
         <core-toolbar>
             <span data-bind="text: appTitle"></span>
@@ -12,7 +12,8 @@
     <div tool flex>
         <span class="caps title" data-bind="text: title"></span>
         <!-- ko if: router.showFullMenu -->
-        <paper-icon-button style="float: right" icon="settings" data-bind="click: function(){router.navigate('settings')}"
+        <paper-icon-button style="float: right" icon="settings"
+                           data-bind="click: function(){router.navigate('settings')}"
                            title="Settings"></paper-icon-button>
         <div id="search">
             <paper-icon-button icon="search" data-bind=""></paper-icon-button>
@@ -27,9 +28,9 @@
     </div>
 </core-scaffold>
 
-<paper-action-dialog heading="Logout" id="logout" backdrop="" autoclosedisabled="" layered="false" role="dialog" layout="" vertical="" tabindex="-1"  transition="core-transition-left">
-
+<paper-action-dialog heading="Logout" id="logout" backdrop="" autoclosedisabled="" layered="false" role="dialog"
+                     layout="" vertical="" tabindex="-1" transition="core-transition-left">
     <p>Logout? Really?!</p>
-    <paper-button  affirmative="" role="button" tabindex="0" data-bind="click:cancel">Cancel</paper-button>
-    <paper-button  affirmative="" autofocus="" role="button" tabindex="0" data-bind="click:logout">Logout</paper-button>
+    <paper-button affirmative="" role="button" tabindex="0" data-bind="click:cancel">Cancel</paper-button>
+    <paper-button affirmative="" autofocus="" role="button" tabindex="0" data-bind="click:logout">Logout</paper-button>
 </paper-action-dialog>
