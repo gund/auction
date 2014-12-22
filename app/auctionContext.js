@@ -59,5 +59,4 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
     };
 
     return new AuctionContext();
-})
-;
+});
