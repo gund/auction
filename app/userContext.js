@@ -36,8 +36,9 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
 
         http.post(url, user, app.parseHeaders)
             .done(function (response) {
-                userContext.session = response;
+                userContext.session = response.sessionToken;
                 localStorage.setItem('userID', response.objectId);
+                localStorage.setItem('sessionToken', response.sessionToken);
                 dfd.resolve();
             })
             .fail(function (e) {

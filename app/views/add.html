@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <fieldset data-bind="attr: {disabled: formLoading}">
+        <form class="center" data-bind="submit: addAuction">
+            <core-field>
+                <paper-input-decorator floatinglabel label="Title">
+                    <input type="text" data-bind="value: title"/>
+                </paper-input-decorator>
+            </core-field>
+            <p class="errorMessage" data-bind="if: !title.isValid() && title.isModified()">
+                <span data-bind="validationMessage: title"> </span>
+                <svg viewBox="0 0 24 24" height="20px" width="20px">
+                    <g>
+                        <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                    </g>
+                </svg>
+            </p>
+
+            <core-field>
+                <paper-input-decorator floatinglabel label="Description" layout vertical>
+                    <paper-autogrow-textarea>
+                        <textarea placeholder="Description" data-bind="value: description"></textarea>
+                    </paper-autogrow-textarea>
+                </paper-input-decorator>
+            </core-field>
+            <p class="errorMessage" data-bind="if: !description.isValid() && description.isModified()">
+                <span data-bind="validationMessage: description"> </span>
+                <svg viewBox="0 0 24 24" height="20px" width="20px">
+                    <g>
+                        <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                    </g>
+                </svg>
+            </p>
+
+            <core-field>
+                <paper-input-decorator floatinglabel label="Auction Image" style="width: 65%;margin-right: 5%;">
+                    <input type="file" id="image" data-bind="value: image, event: {change: updateImage}"
+                           accept="image/x-png, image/gif, image/jpeg"/>
+                </paper-input-decorator>
+                <img style="max-width:30%;max-height: 200px;float: right" data-bind="attr: {src: imageSrc}"></core-image>
+            </core-field>
+            <p class="errorMessage" data-bind="if: !image.isValid() && image.isModified()">
+                <span data-bind="validationMessage: image"> </span>
+                <svg viewBox="0 0 24 24" height="20px" width="20px">
+                    <g>
+                        <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                    </g>
+                </svg>
+            </p>
+
+            <core-field>
+                <paper-input-decorator floatinglabel label="Start Bet">
+                    <input type="text" data-bind="value: startBet"/>
+                </paper-input-decorator>
+            </core-field>
+            <p class="errorMessage" data-bind="if: !startBet.isValid() && startBet.isModified()">
+                <span data-bind="validationMessage: startBet"> </span>
+                <svg viewBox="0 0 24 24" height="20px" width="20px">
+                    <g>
+                        <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                    </g>
+                </svg>
+            </p>
+
+            <core-field>
+                <paper-input-decorator floatinglabel label="End Date">
+                    <input type="date" data-bind="value: endDate"/>
+                </paper-input-decorator>
+            </core-field>
+            <p class="errorMessage" data-bind="if: !endDate.isValid() && endDate.isModified()">
+                <span data-bind="validationMessage: endDate"> </span>
+                <svg viewBox="0 0 24 24" height="20px" width="20px">
+                    <g>
+                        <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                    </g>
+                </svg>
+            </p>
+
+            <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: addAuction"
+                          data-bind="attr: {disabled: formLoading}">
+                Add Auction
+            </paper-button>
+            <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000"
+                         responsivewidth="600px"></paper-toast>
+            <paper-toast text="Saving..." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true"
+                         responsivewidth="600px">
+                <paper-spinner active></paper-spinner>
+            </paper-toast>
+        </form>
+    </fieldset>
+</div>

@@ -9,6 +9,7 @@ requirejs.config({
         'Q': '../lib/q/q',
 
         'userContext': 'userContext',
+        'auctionContext': 'auctionContext',
         'knockout.validation':'../lib/knockout-validation/knockout.validation'
     },
     shim: {
