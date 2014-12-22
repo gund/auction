@@ -47,7 +47,6 @@ define(['knockout', 'userContext', 'plugins/router', 'auctionContext'], function
         var me = this;
         this.loading(true);
         this.currentPage += 15;
-        console.log('loading next', this.currentPage);
         var progress = auctionContext.load(userContext.getUserId(), 15, this.currentPage);
         progress.done(function (auctions) {
             if (auctions.length < 15) me.lastPage = true;
