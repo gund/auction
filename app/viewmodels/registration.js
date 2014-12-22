@@ -43,7 +43,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
         });
         this.error = ko.observable();
         this.errors = ko.validation.group(this);
-
+        this.formLoading = ko.observable(false);
     }
 
     ViewModel.prototype.canActivate = function () {
@@ -56,6 +56,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
     ViewModel.prototype.submit = function () {
         var me = this;
         if (this.errors().length == 0) {
+            me.formLoading(true);
             document.querySelector('#spinner').show();
             userContext.signup(this.login(), this.email(), this.password())
                 .then(function () {
@@ -71,6 +72,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                 })
                 .finally(function () {
                     document.querySelector('#spinner').dismiss();
+                    me.formLoading(false);
                 });
         } else {
             this.errors.showAllMessages();
