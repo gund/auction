@@ -69,7 +69,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
             }
         }
         if (routeMaps.length == i) {
-            i = 0;
+            i = -1;
         }
         router.selectedTab(i);
         return true;
