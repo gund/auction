@@ -49,7 +49,7 @@
 
             <core-field>
                 <paper-input-decorator floatinglabel label="Start Bet">
-                    <input type="text" data-bind="value: startBet"/>
+                    <input type="number" data-bind="value: startBet"/>
                 </paper-input-decorator>
             </core-field>
             <p class="errorMessage" data-bind="if: !startBet.isValid() && startBet.isModified()">
@@ -78,7 +78,7 @@
             <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: addAuction, attr: {disabled: formLoading}">
                 Add Auction
             </paper-button>
-            <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000"
+            <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="5000"
                          responsivewidth="600px"></paper-toast>
             <paper-toast text="Saving..." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true"
                          responsivewidth="600px">

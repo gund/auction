@@ -15,6 +15,7 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
      * @returns {Auction}
      */
     AuctionContext.prototype.newAuction = function (title, description, image, startBet, endDate, userId, currentBet, buyerId) {
+        var startBet = parseFloat(startBet);
         return new Auction(title, description, image, startBet, endDate, userId, currentBet, buyerId);
     };
 
