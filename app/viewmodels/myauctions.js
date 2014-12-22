@@ -25,12 +25,14 @@ define(['knockout', 'userContext', 'plugins/router', 'auctionContext'], function
             document.querySelector('#errorToast').show();
         });
         progress.finally(function () {
+            me.loading(false);
             document.querySelector('#spinner').dismiss();
         });
     };
 
     ViewModel.prototype.attached = function () {
         var me = this;
+        me.loading(true);
         document.querySelector('#spinner').show();
         document.querySelector('core-scaffold').addEventListener('scroll', function (e) {
             if (me.loading() || me.lastPage) return;
