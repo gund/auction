@@ -44,7 +44,8 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         var data = {
             limit: limit,
             skip: offset,
-            include: "user"
+            include: "user",
+            order: "-createdAt"
         };
         if (userId) data['where'] = {
             user: {
