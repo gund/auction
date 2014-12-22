@@ -196,8 +196,8 @@ paper-action-dialog {
 .auction img {
     float: left;
     margin: 1%;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
 
 .auctionTitle {
@@ -240,7 +240,7 @@ paper-action-dialog {
     float: left;
     height: 250px;
     width: 250px;
-    margin: 0 4%;
+    margin: 2% 4%;
 }
 
 .auctionDataFull {
@@ -288,7 +288,7 @@ paper-action-dialog {
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1020px) {
     .auctionFull {
         width: 100%;
         padding: 1em 2em;
@@ -296,7 +296,7 @@ paper-action-dialog {
 
     .auctionDataFull {
         width: 100%;
-        padding: 0 2em;
+        padding: 0 2em 2em 2em;
     }
 }
 
