@@ -14,13 +14,11 @@
         </div>
     </a>
 </div>
-<!-- ko if: auctions().length == 0 -->
-<div class="container-fluid">
+<div class="container-fluid" data-bind="if: auctions().length == 0">
     <div class="page-header">
         <h2>No Auctions found</h2>
     </div>
 </div>
-<!-- /ko -->
 <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000" responsivewidth="600px"></paper-toast>
 <paper-toast text="Updating..." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true"
              responsivewidth="600px">

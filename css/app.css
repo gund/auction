@@ -201,12 +201,13 @@ paper-action-dialog {
 .auctionTitle {
     float: left;
     margin-left: 1%;
-    width: 60%;
+    width: 54%;
 }
 
 .auctionData {
     float: left;
     margin-top: 1%;
+    width: 27%;
 }
 
 .list-group-item:hover {
