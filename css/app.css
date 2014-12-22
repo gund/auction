@@ -38,6 +38,7 @@ core-scaffold::shadow core-header-panel {
     float: left;
     height: 100%;
     vertical-align: text-bottom;
+    line-height: 42px;
 }
 
 #search {

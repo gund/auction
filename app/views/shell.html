@@ -10,6 +10,10 @@
         </core-menu>
     </core-header-panel>
     <div tool flex>
+        <!-- ko if: router.showFullMenu && (router.selectedTab() == -2) -->
+        <paper-icon-button icon="arrow-back" title="Back" style="float: left"
+                           data-bind="click: function(){router.navigateBack()}"></paper-icon-button>
+        <!-- /ko -->
         <span class="caps title" data-bind="text: title"></span>
         <!-- ko if: router.showFullMenu -->
         <paper-icon-button style="float: right" icon="settings"

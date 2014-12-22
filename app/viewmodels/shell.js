@@ -68,9 +68,8 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
                 break;
             }
         }
-        if (routeMaps.length == i) {
-            i = -1;
-        }
+        if (routeMaps.length == i) i = -1;
+        if (params.fragment.indexOf('room/') != -1) i = -2;
         router.selectedTab(i);
         return true;
     };
