@@ -105,8 +105,8 @@ define(['knockout', 'userContext', 'knockout.validation', 'auctionContext', 'Q',
                 var canvas = document.createElement('canvas');
                 image.width = newSize.w;
                 image.height = newSize.h;
-                canvas.width = newSize.w;
-                canvas.height = newSize.h;
+                canvas.width = 250;
+                canvas.height = 250;
                 var ctx = canvas.getContext('2d');
                 ctx.drawImage(image, 0, 0, newSize.w, newSize.h);
                 var imgSrc = canvas.toDataURL('image/jpeg', 0.7);
@@ -121,11 +121,11 @@ define(['knockout', 'userContext', 'knockout.validation', 'auctionContext', 'Q',
     function scale(maxW, maxH, currW, currH) {
         var ratio = currH / currW;
         if (currW >= maxW && ratio <= 1) {
-            currW = maxW;
-            currH = Math.round(currW * ratio);
+            currW = Math.round(maxH / ratio);//maxW;
+            currH = maxH;//Math.round(currW * ratio);
         } else if (currH >= maxH) {
-            currH = maxH;
-            currW = Math.round(currH / ratio);
+            currH = Math.round(maxW * ratio);//maxH;
+            currW = maxW;//Math.round(currH / ratio);
         }
         return {
             w: currW,
