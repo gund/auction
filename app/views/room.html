@@ -1,63 +1,58 @@
-<div class="container-fluid">
+<div class="container-fluid" data-bind="foreach: auction">
     <div class="auctionFull">
-        <h1>Title</h1>
+        <h1 data-bind="text: title"></h1>
         <hr/>
         <div class="auctionTitleFull">
-            <img src="icons/test.jpg"/>
+            <img data-bind="attr: {src: imageSrc}"/>
 
             <h3>Description</h3>
 
-            <p>Description asdasdasdasdasdasd asdas dasdasdasdasdasdasdasda sdasdasdasdasdasdasdas dasdasdasdasd
-                asdasdasdasdasdasdasd asdasdasdasd asdasdas dasdasdasdasdasdasdas dasdasdasdasdasdasdas dasdasdasdas
-                dasdasda sdasdasdasda
-                sdasdasdasdasd asdasdasdasdasdasdasdasd aasdas dasdasdasdsdas dasdasda sdasdasdasdasda sdasdasd
-                asdasdasdas dasdasdas dasdasdasda sdasdasd asd asdas
-                dasd asdasdasdasd asdasdasda sdasdasdas dasdasdasda sdasda sdasdasdasd dasdasdasdasdasd asdasd asd
-            </p>
+            <p data-bind="text: description"></p>
         </div>
     </div>
     <div class="auctionDataFull">
         <ul class="list-group">
-            <li class="list-group-item"><h5>Owner: <span class="right">Lalka</span></h5></li>
-            <li class="list-group-item"><h5>Start Bet:<span class="right" data-bind="text: startBet">1000$</span></h5>
-            </li>
-            <li class="list-group-item"><h5>Current Bet: <span class="right" data-bind="text: startBet">1200$</span>
-            </h5></li>
-            <li class="list-group-item"><h5>End Date: <span class="right"
-                                                            data-bind="text: new Date(endDate.iso).toLocaleDateString()"> 22.12.2014</span>
-            </h5></li>
             <li class="list-group-item">
-                <core-field>
-                    <paper-input-decorator floatinglabel label="My Bet">
-                        <input type="number" data-bind="value: startBet"/>
-                    </paper-input-decorator>
-                </core-field>
-                <p class="errorMessage" data-bind="if: !myBet.isValid() && startBet.isModified()">
-                    <span data-bind="validationMessage: startBet"> </span>
-                    <svg viewBox="0 0 24 24" height="20px" width="20px">
-                        <g>
-                            <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
-                        </g>
-                    </svg>
-                </p>
-                <paper-button raised class="accept-pol fullWidth login-register-pol"
-                              data-bind="click: addAuction, attr: {disabled: formLoading}">
-                    Set
-                </paper-button>
+                <h5>Owner: <span class="right" data-bind="text: user.username"></span></h5>
             </li>
+            <li class="list-group-item">
+                <h5>Start Bet:<span class="right" data-bind="text: startBet"></span></h5>
+            </li>
+            <li class="list-group-item">
+                <h5>Current Bet: <span class="right" data-bind="text: currentBet"></span></h5>
+            </li>
+            <li class="list-group-item">
+                <h5>End Date: <span class="right" data-bind="text: new Date(endDate.iso).toLocaleDateString()"></span>
+                </h5>
+            </li>
+            <!-- ko if: !$parent.isOwner() -->
+            <li class="list-group-item">
+                <fieldset data-bind="attr: {disabled: $parent.formLoading}">
+                    <core-field>
+                        <paper-input-decorator floatinglabel label="My Bet">
+                            <input type="number" data-bind="value: $parent.betAmount"/>
+                        </paper-input-decorator>
+                    </core-field>
+                    <p class="errorMessage" data-bind="if: !$parent.betAmount.isValid() && $parent.betAmount.isModified()">
+                        <span data-bind="validationMessage: $parent.betAmount"> </span>
+                        <svg viewBox="0 0 24 24" height="20px" width="20px">
+                            <g>
+                                <path d="M1 21h22l-11-19-11 19zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"></path>
+                            </g>
+                        </svg>
+                    </p>
+                    <paper-button raised class="accept-pol fullWidth login-register-pol"
+                                  data-bind="click: function(){$parent.setBet()}, attr: {disabled: $parent.formLoading}">
+                        Set
+                    </paper-button>
+                </fieldset>
+            </li>
+            <!-- /ko -->
         </ul>
     </div>
 </div>
-<!--<div style="text-align: center" data-bind="if: loading">-->
-<!--<paper-spinner active></paper-spinner>-->
-<!--<br><br>-->
-<!--</div>-->
-<!--<div class="container-fluid" data-bind="if: auctions().length == 0">-->
-<!--<div class="page-header">-->
-<!--<h2>No Auctions found</h2>-->
-<!--</div>-->
-<!--</div>-->
 <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000" responsivewidth="600px"></paper-toast>
+<paper-toast text="Bet set successfully" id="betToast" duration="3000" responsivewidth="600px"></paper-toast>
 <paper-toast text="Updating..." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true"
              responsivewidth="600px">
     <paper-spinner active></paper-spinner>

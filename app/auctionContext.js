@@ -34,7 +34,26 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         return dfd.promise;
     };
 
-    AuctionContext.prototype.load = function(userId, limit, offset) {
+    AuctionContext.prototype.loadById = function (id) {
+        id = id || '';
+        var dfd = Q.defer();
+        var url = "https://api.parse.com/1/classes/Auction/" + id;
+        var data = {
+            include: "user"
+        };
+
+        http.get(url, data, app.parseHeaders)
+            .done(function (response) {
+                dfd.resolve(response);
+            })
+            .fail(function (e) {
+                dfd.reject(JSON.parse(e.responseText).error);
+            });
+
+        return dfd.promise;
+    };
+
+    AuctionContext.prototype.load = function (userId, limit, offset) {
         userId = userId || null;
         limit = limit || 15;
         offset = offset || 0;
@@ -58,6 +77,28 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         http.get(url, data, app.parseHeaders)
             .done(function (response) {
                 dfd.resolve(response.results);
+            })
+            .fail(function (e) {
+                dfd.reject(JSON.parse(e.responseText).error);
+            });
+
+        return dfd.promise;
+    };
+
+    AuctionContext.prototype.addBet = function(newBet, auctionId) {
+        newBet = parseFloat(newBet) || 0;
+        auctionId = auctionId || null;
+        if (!auctionId) return;
+
+        var dfd = Q.defer();
+        var url = "https://api.parse.com/1/classes/Auction/" + auctionId;
+        var data = {
+            currentBet: newBet
+        };
+
+        http.put(url, data, app.parseHeaders)
+            .done(function (response) {
+                dfd.resolve(response);
             })
             .fail(function (e) {
                 dfd.reject(JSON.parse(e.responseText).error);
