@@ -52,7 +52,7 @@ define(['knockout', 'userContext', 'plugins/router', 'knockout.validation'], fun
                     document.querySelector('#errorToast').show();
                 })
                 .finally(function(){
-                    document.querySelector('#spinner').hide();
+                    document.querySelector('#spinner').dismiss();
                 });
         } else {
             this.errors.showAllMessages();

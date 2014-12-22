@@ -75,8 +75,7 @@
                 </svg>
             </p>
 
-            <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: addAuction"
-                          data-bind="attr: {disabled: formLoading}">
+            <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: addAuction, attr: {disabled: formLoading}">
                 Add Auction
             </paper-button>
             <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000"

@@ -67,6 +67,7 @@ define(['knockout', 'userContext', 'knockout.validation', 'auctionContext', 'Q',
     ViewModel.prototype.addAuction = function () {
         var me = this;
         if (this.errors().length == 0) {
+            this.formLoading(true);
             document.querySelector('#spinner').show();
             var auction = auctionContext.newAuction(
                 this.title(),
@@ -74,19 +75,19 @@ define(['knockout', 'userContext', 'knockout.validation', 'auctionContext', 'Q',
                 this.imageSrc(),
                 this.startBet(),
                 new Date(this.endDate()),
-                0,
                 userContext.getUserId()
             );
             var progress = auctionContext.add(auction);
+            progress.finally(function () {
+                me.formLoading(true);
+                document.querySelector('#spinner').dismiss();
+            });
             progress.done(function (data) {
                 router.navigate('room/' + data.objectId);
             });
             progress.fail(function (error) {
                 me.error(error);
                 document.querySelector('#errorToast').show();
-            });
-            progress.finally(function () {
-                document.querySelector('#spinner').hide();
             });
         } else this.errors.showAllMessages();
     };
@@ -132,5 +133,5 @@ define(['knockout', 'userContext', 'knockout.validation', 'auctionContext', 'Q',
         };
     }
 
-    return new ViewModel();
+    return ViewModel;
 });

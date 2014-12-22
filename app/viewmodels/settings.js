@@ -40,8 +40,6 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/router'], fun
 
     ViewModel.prototype.activate = function() {
         this.loadUserInfo();
-        this.password('');
-        this.newPassword('');
     };
 
     ViewModel.prototype.loadUserInfo = function () {
@@ -65,12 +63,17 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/router'], fun
         var me = this;
         if (this.errors().length == 0) {
             document.querySelector('#spinner').show();
+            this.formLoading(true);
             var user2update = {
                 email: this.email,
                 username: this.login
             };
             if (this.password() != "") user2update.password = this.password();
             var progress = userContext.saveUserInfo(user2update);
+            progress.finally(function () {
+                document.querySelector('#spinner').dismiss();
+                me.formLoading(true);
+            });
             progress.done(function() {
                 router.navigate('all');
             });
@@ -78,11 +81,8 @@ define(['knockout', 'userContext', 'knockout.validation', 'plugins/router'], fun
                 me.error(JSON.parse(e.responseText).error);
                 document.querySelector('#errorToast').show();
             });
-            progress.finally(function () {
-                document.querySelector('#spinner').hide();
-            });
         } else this.errors.showAllMessages();
     };
 
-    return new ViewModel();
+    return ViewModel;
 });

@@ -213,6 +213,10 @@ paper-action-dialog {
     background-color:#d9edf7 !important;
 }
 
+.auctionAll a {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 450px) {
     paper-action-dialog {
         width: 95%;

@@ -53,8 +53,7 @@
                     </g>
                 </svg>
             </p>
-            <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: saveSettings"
-                          data-bind="attr: {disabled: formLoading}">
+            <paper-button raised class="accept-pol fullWidth login-register-pol" data-bind="click: saveSettings, attr: {disabled: formLoading}">
                 Save
             </paper-button>
             <paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000" responsivewidth="600px"></paper-toast>

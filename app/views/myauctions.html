@@ -1,1 +1,28 @@
-<h1>My Auctions</h1>
+<div class="list-group auctionAll" data-bind="foreach: auctions">
+    <a data-bind="click: function(){$parent.toRoom(objectId)}" class="list-group-item">
+        <div class="auction">
+            <img data-bind="attr: {src: imageSrc}"/>
+            <div class="auctionTitle">
+                <h3 data-bind="text: title"></h3>
+                <p data-bind="text: description"></p>
+            </div>
+            <div class="auctionData">
+                <p><span>Username:</span> <span data-bind="text: user.username"></span></p>
+                <p><span>Start Bet:</span> <span data-bind="text: startBet"></span></p>
+                <p><span>End Date:</span> <span data-bind="text: new Date(endDate.iso).toLocaleDateString()"></span></p>
+            </div>
+        </div>
+    </a>
+</div>
+<!-- ko if: auctions().length == 0 -->
+<div class="container-fluid">
+    <div class="page-header">
+        <h2>No Auctions found</h2>
+    </div>
+</div>
+<!-- /ko -->
+<paper-toast data-bind="attr: {text: error}" id="errorToast" duration="3000" responsivewidth="600px"></paper-toast>
+<paper-toast text="Updating..." id="spinner" duration="9999" swipeDisabled="true" autoCloseDisabled="true"
+             responsivewidth="600px">
+    <paper-spinner active></paper-spinner>
+</paper-toast>
