@@ -190,10 +190,11 @@ paper-action-dialog {
 
 .auction {
     overflow: hidden;
+    color: #333333;
 }
 
 .auction img {
-    float:left;
+    float: left;
     margin: 1%;
     height: 80px;
     width: 80px;
@@ -211,8 +212,12 @@ paper-action-dialog {
     width: 27%;
 }
 
-.list-group-item:hover {
-    background-color:#d9edf7 !important;
+.auctionAll .list-group-item:hover {
+    background-color: #d9edf7 !important;
+}
+
+.auctionAll .list-group-item {
+    background-color: #F4F4F4;
 }
 
 .auctionAll a {
@@ -222,5 +227,85 @@ paper-action-dialog {
 @media screen and (max-width: 450px) {
     paper-action-dialog {
         width: 95%;
+    }
+}
+
+.auctionFull {
+    padding: 2em;
+    float: left;
+    width: 80%;
+}
+
+.auctionFull img {
+    float: left;
+    height: 250px;
+    width: 250px;
+    margin: 0 4%;
+}
+
+.auctionDataFull {
+    float: left;
+    width: 20%;
+    padding: 2em 2em 0 2em;
+    min-width: 200px;
+}
+
+.right {
+    float: right;
+}
+
+.auctionDataFull ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.auctionDataFull .list-group-item {
+    background-color: #F4F4F4;
+}
+
+.auctionDataFull .list-group-item:first-child, .auctionDataFull .list-group-item:last-child {
+    border-radius: 0;
+}
+
+@media screen and (max-width: 1440px) {
+    .auctionFull {
+        width: 75%;
+    }
+
+    .auctionDataFull {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .auctionFull {
+        width: 65%;
+    }
+
+    .auctionDataFull {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .auctionFull {
+        width: 100%;
+        padding: 1em 2em;
+    }
+
+    .auctionDataFull {
+        width: 100%;
+        padding: 0 2em;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .auctionFull img {
+        float: none;
+        max-height: 250px;
+        max-width: 250px;
+        height: 100%;
+        width: 100%;
     }
 }
