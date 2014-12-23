@@ -1,4 +1,4 @@
-define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
+define(['Q', 'plugins/http', 'durandal/app', 'userContext'], function (Q, http, app, userContext) {
 
     function AuctionContext() {
     }
@@ -94,7 +94,12 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         var dfd = Q.defer();
         var url = "https://api.parse.com/1/classes/Auction/" + auctionId;
         var data = {
-            currentBet: newBet
+            currentBet: newBet,
+            buyer: {
+                __type: "Pointer",
+                className: "_User",
+                objectId: userContext.getUserId()
+            }
         };
 
         http.put(url, data, app.parseHeaders)
