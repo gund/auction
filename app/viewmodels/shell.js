@@ -1,6 +1,5 @@
 define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (router, app, userContext, ko) {
 
-    router.searchText = ko.observable('');
     var routes = {
         title: ko.observable(''),
         appTitle: app.title,
@@ -42,7 +41,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
     function computeMenu() {
         var showUserMenu = router.updateMenu();
         var menu = [
-            {route: '', moduleId: 'viewmodels/landing', nav: false},
+            {route: '', title:"Home", moduleId: 'viewmodels/landing', nav: false},
             {route: 'home', title: 'Home', moduleId: 'viewmodels/landing', nav: !showUserMenu, icon: 'home'},
             {route: 'login', title: 'Login', moduleId: 'viewmodels/login', nav: !showUserMenu, icon: 'account-circle'},
             {
@@ -70,7 +69,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         return menu;
     }
 
-
+    router.searchText = ko.observable('');
     router.updateMenu = ko.observable(userContext.isLoggedIn());
     router.appMenu = ko.computed(computeMenu);
     router.selectedTab = ko.observable(0);
@@ -86,6 +85,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         }
         if (routeMaps.length == i) i = -1;
         if (params.fragment.indexOf('room/') != -1) i = -2;
+        if (params.fragment == '') i=0;
         router.selectedTab(i);
         return true;
     };
