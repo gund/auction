@@ -63,7 +63,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
             {route: 'logout', title: 'Logout', moduleId: 'viewmodels/logout', nav: showUserMenu, icon: "exit-to-app"},
             {route: 'settings', title: 'Settings', moduleId: 'viewmodels/settings', nav: false, icon: "settings"},
             {route: 'add', title: 'Add Auction', moduleId: 'viewmodels/add', nav: false, icon: "add"},
-            {route: 'room/:id', title: 'Room', moduleId: 'viewmodels/room', nav: false, icon: "info"}
+            {route: 'room/:id', title: 'Auction', moduleId: 'viewmodels/room', nav: false, icon: "info"}
         ];
         router.reset();
         router.map(menu).buildNavigationModel();
@@ -86,7 +86,6 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         }
         if (routeMaps.length == i) i = -1;
         if (params.fragment.indexOf('room/') != -1) i = -2;
-        console.log(i);
         router.selectedTab(i);
         return true;
     };
