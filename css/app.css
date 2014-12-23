@@ -8,6 +8,16 @@ core-toolbar {
     color: #fafafa;
 }
 
+.app-loader {
+    margin: auto 0;
+    text-align: center;
+}
+
+.app-loader paper-spinner {
+    width: 200px;
+    height: 200px;
+}
+
 /* content of the left panel */
 core-header-panel {
     background: #616161;
