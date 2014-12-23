@@ -1,9 +1,11 @@
 define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (router, app, userContext, ko) {
 
+    router.searchText = ko.observable('');
     var routes = {
         title: ko.observable(''),
         appTitle: app.title,
         router: router,
+        searchBar: false,
         logout: function () {
             userContext.logout();
             router.updateMenu(userContext.isLoggedIn());
@@ -20,6 +22,20 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         },
         activate: function () {
             return router.activate();
+        },
+        toggleSearch: function() {
+            this.searchBar = !this.searchBar;
+            var search = document.querySelector('#search');
+            var input = document.querySelector('#search input');
+            if (this.searchBar) {
+                search.setAttribute('show', '');
+                input.style.display = 'inline-block';
+                router.searchText('');
+                input.focus();
+            } else {
+                search.removeAttribute('show');
+                input.style.display = 'none';
+            }
         }
     };
 
@@ -70,6 +86,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         }
         if (routeMaps.length == i) i = -1;
         if (params.fragment.indexOf('room/') != -1) i = -2;
+        if (params.fragment == 'all' || params.fragment == 'myauctions') i = -3;
         router.selectedTab(i);
         return true;
     };

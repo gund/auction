@@ -1,6 +1,7 @@
 define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
 
-    function AuctionContext() {}
+    function AuctionContext() {
+    }
 
     /**
      * Factory for Auction
@@ -85,7 +86,7 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         return dfd.promise;
     };
 
-    AuctionContext.prototype.addBet = function(newBet, auctionId) {
+    AuctionContext.prototype.addBet = function (newBet, auctionId) {
         newBet = parseFloat(newBet) || 0;
         auctionId = auctionId || null;
         if (!auctionId) return;
@@ -99,6 +100,38 @@ define(['Q', 'plugins/http', 'durandal/app'], function (Q, http, app) {
         http.put(url, data, app.parseHeaders)
             .done(function (response) {
                 dfd.resolve(response);
+            })
+            .fail(function (e) {
+                dfd.reject(JSON.parse(e.responseText).error);
+            });
+
+        return dfd.promise;
+    };
+
+    AuctionContext.prototype.findByTitle = function (title, userId) {
+        title = title || '';
+        userId = userId || null;
+        if (title == '') return;
+
+        var dfd = Q.defer();
+        var url = "https://api.parse.com/1/classes/Auction";
+        var data = {
+            limit: 15,
+            where: {
+                title: {
+                    "$gte": title
+                }
+            }
+        };
+        if (userId) data.where.user = {
+            __type: "Pointer",
+            className: "_User",
+            objectId: userId
+        };
+
+        http.get(url, data, app.parseHeaders)
+            .done(function (response) {
+                dfd.resolve(response.results);
             })
             .fail(function (e) {
                 dfd.reject(JSON.parse(e.responseText).error);

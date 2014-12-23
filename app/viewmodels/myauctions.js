@@ -1,7 +1,11 @@
 define(['knockout', 'userContext', 'plugins/router', 'auctionContext'], function (ko, userContext, router, auctionContext) {
 
+    var vm = null;
+
     function ViewModel() {
+        vm = this;
         this.auctions = ko.observableArray([]);
+        this.auctionsCache = [];
         this.error = ko.observable('');
         this.loading = ko.observable(false);
         this.currentPage = 1;
@@ -19,6 +23,7 @@ define(['knockout', 'userContext', 'plugins/router', 'auctionContext'], function
         progress.done(function (auctions) {
             if (auctions.length < 15) me.lastPage = true;
             me.auctions(auctions);
+            me.auctionsCache = auctions;
         });
         progress.fail(function (e) {
             me.error(e);
@@ -51,6 +56,7 @@ define(['knockout', 'userContext', 'plugins/router', 'auctionContext'], function
         progress.done(function (auctions) {
             if (auctions.length < 15) me.lastPage = true;
             me.auctions(me.auctions().concat(auctions));
+            me.auctionsCache = me.auctions();
         });
         progress.fail(function (e) {
             me.error(e);
@@ -60,6 +66,29 @@ define(['knockout', 'userContext', 'plugins/router', 'auctionContext'], function
             me.loading(false);
         });
     };
+
+    ViewModel.prototype.search = ko.computed(function () {
+        var text = router.searchText();
+        if (!vm) return;
+        var me = vm;
+        if (text == '') {
+            me.auctions(me.auctionsCache);
+            return;
+        }
+        me.loading(true);
+        me.auctions([]);
+        var progress = auctionContext.findByTitle(text, userContext.getUserId());
+        progress.done(function (auctions) {
+            if (router.searchText() != '') me.auctions(auctions);
+        });
+        progress.fail(function (e) {
+            me.error(e);
+            document.querySelector('#errorToast').show();
+        });
+        progress.finally(function () {
+            me.loading(false);
+        });
+    });
 
     return new ViewModel();
 });

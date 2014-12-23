@@ -19,10 +19,13 @@
         <paper-icon-button style="float: right" icon="settings"
                            data-bind="click: function(){router.navigate('settings')}"
                            title="Settings"></paper-icon-button>
+        <!-- ko if: router.showFullMenu && (router.selectedTab() == -3) -->
         <div id="search">
-            <paper-icon-button icon="search" title="Search"></paper-icon-button>
-            <input type="search" autocomplete="off" style="display: none">
+            <paper-icon-button icon="search" title="Search" data-bind="click: toggleSearch"></paper-icon-button>
+            <input data-bind="value: router.searchText, valueUpdate: 'afterkeydown'"
+                   type="search" autocomplete="off" style="display: none">
         </div>
+        <!-- /ko -->
         <paper-icon-button style="float: right" icon="add" data-bind="click: function(){router.navigate('add')}"
                            title="Add Auction"></paper-icon-button>
         <!-- /ko -->
