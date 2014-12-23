@@ -1,6 +1,14 @@
 <div class="container-fluid" data-bind="foreach: auction">
     <div class="auctionFull">
-        <h1 data-bind="text: title"></h1>
+        <h1>
+            <span data-bind="text: title"></span>
+            <!-- ko if: status == 'expired' -->
+            <small data-bind="if: !buyer">Expired</small>
+            <small data-bind="if: buyer">
+                Sold to <span style="text-decoration: underline" data-bind="text: buyer.username"></span>
+            </small>
+            <!-- /ko -->
+        </h1>
         <hr/>
         <div class="auctionTitleFull">
             <img data-bind="attr: {src: imageSrc}"/>
@@ -25,7 +33,7 @@
                 <h5>End Date: <span class="right" data-bind="text: new Date(endDate.iso).toLocaleDateString()"></span>
                 </h5>
             </li>
-            <!-- ko if: !$parent.isOwner() -->
+            <!-- ko if: !$parent.isOwner() && status != 'expired' -->
             <li class="list-group-item">
                 <fieldset data-bind="attr: {disabled: $parent.formLoading}">
                     <core-field>
@@ -33,7 +41,8 @@
                             <input type="number" data-bind="value: $parent.betAmount"/>
                         </paper-input-decorator>
                     </core-field>
-                    <p class="errorMessage" data-bind="if: !$parent.betAmount.isValid() && $parent.betAmount.isModified()">
+                    <p class="errorMessage"
+                       data-bind="if: !$parent.betAmount.isValid() && $parent.betAmount.isModified()">
                         <span data-bind="validationMessage: $parent.betAmount"> </span>
                         <svg viewBox="0 0 24 24" height="20px" width="20px">
                             <g>

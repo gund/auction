@@ -40,11 +40,12 @@ define(['Q', 'plugins/http', 'durandal/app', 'userContext'], function (Q, http, 
         var dfd = Q.defer();
         var url = "https://api.parse.com/1/classes/Auction/" + id;
         var data = {
-            include: "user"
+            include: "user,buyer"
         };
 
         http.get(url, data, app.parseHeaders)
             .done(function (response) {
+                response.buyer = response.buyer || null;
                 dfd.resolve(response);
             })
             .fail(function (e) {
