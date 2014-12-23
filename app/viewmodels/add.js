@@ -64,9 +64,16 @@ define(['knockout', 'userContext', 'knockout.validation', 'auctionContext', 'Q',
         });
     };
 
+
     ViewModel.prototype.addAuction = function () {
         var me = this;
         if (this.errors().length == 0) {
+            var endDate = (new Date(this.endDate())).getTime();
+            if(endDate < Date.now()){
+                this.error("Not actual date");
+                document.querySelector('#errorToast').show();
+                return;
+            }
             this.formLoading(true);
             document.querySelector('#spinner').show();
             var auction = auctionContext.newAuction(
