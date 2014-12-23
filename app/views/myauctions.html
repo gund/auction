@@ -2,10 +2,13 @@
     <a data-bind="attr: {href: '#room/' + objectId}" class="list-group-item">
         <div class="auction">
             <img data-bind="attr: {src: imageSrc}"/>
-
             <div class="auctionTitle">
-                <h3 data-bind="text: title"></h3>
-
+                <h3>
+                    <span data-bind="text: title"></span>
+                    <!-- ko if: status == 'expired' -->
+                    <small>Expired</small>
+                    <!-- /ko -->
+                </h3>
                 <p data-bind="text: description"></p>
             </div>
             <div class="auctionData">
