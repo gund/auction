@@ -125,7 +125,8 @@ define(['Q', 'plugins/http', 'durandal/app', 'userContext'], function (Q, http, 
             limit: 15,
             where: {
                 title: {
-                    "$gte": title
+                    "$regex": title,
+                    "$options": "i"
                 }
             }
         };
