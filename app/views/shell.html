@@ -19,7 +19,7 @@
         <paper-icon-button style="float: right" icon="settings"
                            data-bind="click: function(){router.navigate('settings')}"
                            title="Settings"></paper-icon-button>
-        <!-- ko if: router.showFullMenu && (router.selectedTab() == -3) -->
+        <!-- ko if: router.showFullMenu && (router.selectedTab() == 0 || router.selectedTab() == 1) -->
         <div id="search">
             <paper-icon-button icon="search" title="Search" data-bind="click: toggleSearch"></paper-icon-button>
             <input data-bind="value: router.searchText, valueUpdate: 'afterkeydown'"

@@ -86,7 +86,7 @@ define(['plugins/router', 'durandal/app', 'userContext', 'knockout'], function (
         }
         if (routeMaps.length == i) i = -1;
         if (params.fragment.indexOf('room/') != -1) i = -2;
-        if (params.fragment == 'all' || params.fragment == 'myauctions') i = -3;
+        console.log(i);
         router.selectedTab(i);
         return true;
     };
